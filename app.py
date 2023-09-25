@@ -74,11 +74,12 @@ def main():
                 height: 50px;
                 font-size: 20px;
             }
-            @media (max-width: 768px) {
-                .stApp .stColumns .stColumn {
-                    flex: 0 0 33.33% !important;
-                    max-width: 33.33% !important;
-                }
+            .stApp {
+                max-width: 1000px !important;
+            }
+            .stApp .stColumns .stColumn {
+                flex-basis: 33.33% !important;
+                max-width: 33.33% !important;
             }
         </style>
     """, unsafe_allow_html=True)
@@ -97,7 +98,7 @@ def main():
     # セッション状態の初期化
     if 'selected_category' not in st.session_state:
         st.session_state.selected_category = None
-        
+
     # ボタンと対応するサブカテゴリの選択
     category_list = list(categories.keys())
     for i in range(0, len(category_list), 3):
