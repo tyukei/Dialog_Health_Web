@@ -14,7 +14,7 @@ def main():
 
     # cookie_manager = get_manager()
     # モバイル用の縦長のレイアウトを設定
-    st.set_page_config(layout="wide")
+    # st.set_page_config(layout="wide")
     st.title("血圧行動記録アプリ")
     submit_mes = st.header("")
 
