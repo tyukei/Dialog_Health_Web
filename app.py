@@ -3,7 +3,6 @@ import datetime
 import time
 from PIL import Image
 from backend import send_request
-import extra_streamlit_components as stx
 
 
 def main():
@@ -12,6 +11,8 @@ def main():
     # セッション状態の初期化
     if 'selected_category' not in st.session_state:
         st.session_state.selected_category = None
+
+    # cookie_manager = get_manager()
     # モバイル用の縦長のレイアウトを設定
     st.set_page_config(layout="wide")
     st.title("血圧行動記録アプリ")
@@ -101,6 +102,7 @@ def main():
         data = make_data(uid_value, high_bp1, low_bp1, high_bp2, low_bp2, meal)
         response_data, error_text = send_request(data)  # 外部ファイルの関数を呼び出す
         #set_cookie("uid", uid_value)
+        #cookie_manager.set_cookie("uid", uid_value)
 
         if error_text:
             st.write(f"失敗: {error_text}")
