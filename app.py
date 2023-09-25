@@ -74,13 +74,6 @@ def main():
                 height: 50px;
                 font-size: 20px;
             }
-            .stApp {
-                max-width: 1000px !important;
-            }
-            .stApp .stColumns .stColumn {
-                flex-basis: 33.33% !important;
-                max-width: 33.33% !important;
-            }
         </style>
     """, unsafe_allow_html=True)
     st.header("カテゴリとサブカテゴリ")
