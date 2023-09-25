@@ -65,6 +65,23 @@ def main():
 
     # 8行目: ジョギングとヨガのボタン
     # カテゴリとサブカテゴリのデータ
+    # CSSを使用してボタンのサイズを変更
+    # CSSを使用してボタンのサイズと列の最小幅を変更
+    st.markdown("""
+        <style>
+            .stButton > button {
+                width: 150px;
+                height: 50px;
+                font-size: 20px;
+            }
+            @media (max-width: 768px) {
+                .stApp .stColumns .stColumn {
+                    flex: 0 0 33.33% !important;
+                    max-width: 33.33% !important;
+                }
+            }
+        </style>
+    """, unsafe_allow_html=True)
     st.header("カテゴリとサブカテゴリ")
     categories = {
         "ワークライフ": ["仕事", "オフィス", "リモートワーク", "現場", "出張", "休憩", "休暇", "その他"],
@@ -77,19 +94,22 @@ def main():
         "感情": ["怒り", "不安", "幸福", "興奮", "悲しみ", "その他"],
         "痛み": ["頭痛", "腹痛", "腰痛", "胸痛", "背痛", "筋肉痛", "生理痛", "その他"]
     }
-
+    # セッション状態の初期化
+    if 'selected_category' not in st.session_state:
+        st.session_state.selected_category = None
+        
     # ボタンと対応するサブカテゴリの選択
     category_list = list(categories.keys())
     for i in range(0, len(category_list), 3):
         col1, col2, col3 = st.columns(3)
         with col1:
-            if st.button(category_list[i]):
+            if st.button(category_list[i], key=f"btn_{i}"):
                 st.session_state.selected_category = category_list[i]
         with col2:
-            if i+1 < len(category_list) and st.button(category_list[i+1]):
+            if i+1 < len(category_list) and st.button(category_list[i+1], key=f"btn_{i+1}"):
                 st.session_state.selected_category = category_list[i+1]
         with col3:
-            if i+2 < len(category_list) and st.button(category_list[i+2]):
+            if i+2 < len(category_list) and st.button(category_list[i+2], key=f"btn_{i+2}"):
                 st.session_state.selected_category = category_list[i+2]
 
     # 選択されたカテゴリに基づいてサブカテゴリを表示
